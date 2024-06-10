@@ -7,7 +7,7 @@ Run the Script ---> Check Server Status
 
 ## Background
 
-In this tutorial, we will automate the deployment of a Minecraft server on AWS using Terraform. Everything will be done from the command line, without accessing any of your AWS resources on the web aside from your credentials. We are running this server on US-East, but for different regions small changes could be made to `terraformvariables.tf`.
+In this tutorial, we will automate the deployment of a Minecraft server on AWS using Terraform. Everything will be done from the command line, without accessing any of your AWS resources on the web aside from your credentials. We are running this server on US-East, but for different regions small changes could be made to `terraform/variables.tf`.
 
 ## Requirements
 
