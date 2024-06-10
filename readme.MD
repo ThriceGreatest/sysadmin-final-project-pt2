@@ -76,7 +76,7 @@ In this tutorial, we will automate the deployment of a Minecraft server on AWS u
 1. Get back to the 'minecraft_autoserver' directory. Example
 
     ```bash
-    cd ~minecraft_autoserver
+    cd ~/minecraft_autoserver
     ```
 
 2. Generate a new key pair in that directory
