@@ -11,9 +11,9 @@ In this tutorial, we will automate the deployment of a Minecraft server on AWS u
 
 ## Requirements
 
-- AWS Account Ensure you have an active AWS account. [Create AWS Account](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?refid=em_127222&p=free&c=hp&z=1)
-- AWS CLI Make sure AWS is installed in your shell [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-- Terraform Also make sure Terraform is installed in your shell [Terraform Installation Guide](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+- AWS Account: Ensure you have an active AWS account. [Create AWS Account](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?refid=em_127222&p=free&c=hp&z=1)
+- AWS CLI: Make sure AWS is installed in your shell [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- Terraform: Also make sure Terraform is installed in your shell [Terraform Installation Guide](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
 
 ## Initial Configuration
