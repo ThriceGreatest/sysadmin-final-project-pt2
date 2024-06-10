@@ -16,7 +16,7 @@ In this tutorial, we will automate the deployment of a Minecraft server on AWS u
 - Terraform: Also make sure Terraform is installed in your shell [Terraform Installation Guide](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
 
-## Initial Configuration
+## Walkthrough
 
 ### 0. Clone the GitHub Repo
 
