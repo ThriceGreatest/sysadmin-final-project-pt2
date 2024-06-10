@@ -1,14 +1,20 @@
 # Minecraft Server Setup Using Terraform
 
+Install Requirements ---> Set Up AWS Credentials and Config ---> Create AWS SSH Key Pair
+    
+Run the Script ---> Check Server Status
+       
+
 ## Background
 
 In this tutorial, we will automate the deployment of a Minecraft server on AWS using Terraform. Everything will be done from the command line, without accessing any of your AWS resources on the web aside from your credentials. We are running this server on US-East, but for different regions small changes could be made to `terraformvariables.tf`.
 
 ## Requirements
 
-- AWS Account Ensure you have an active AWS account.
-- AWS CLI Make sure AWS is installed in your shell [AWS CLI Installation Guide](httpsaws.amazon.comcli)
-- Terraform Also make sure Terraform is installed in your shell [Terraform Installation Guide](httpswww.terraform.iodownloads.html)
+- AWS Account Ensure you have an active AWS account. [Create AWS Account](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?refid=em_127222&p=free&c=hp&z=1)
+- AWS CLI Make sure AWS is installed in your shell [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- Terraform Also make sure Terraform is installed in your shell [Terraform Installation Guide](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+
 
 ## Initial Configuration
 
@@ -16,30 +22,30 @@ In this tutorial, we will automate the deployment of a Minecraft server on AWS u
 
 1. Clone this repo into the destination of your choice.
     ```bash
-    git clone httpsgithub.comThriceGreatestminecraft_autoserver
+    git clone https://github.com/ThriceGreatest/minecraft_autoserver
 2. We will assume many actions take place in the 'minecraft_autoserver' directory...
 
 ### 1. Set Up AWS Credentials
 
-1. Open a terminal and navigate to your home directory
+1. Open a terminal and navigate to your home directory:
 
     ```bash
     cd ~
     ```
 
-2. Create the `.aws` directory if it doesn't already exist
+2. Create the `.aws` directory if it doesn't already exist:
 
     ```bash
     mkdir -p .aws
     ```
 
-3. Create a new file named `credentials.txt` using your preferred text editor (e.g., notepad.exe)
+3. Create a new file named `credentials.txt` using your preferred text editor (e.g., notepad.exe):
 
     ```bash
     notepad.exe credentials.txt
     ```
 
-4. Paste in the credentials from your AWS Account. They should look something like
+4. Paste in the credentials from your AWS Account. They should look something like:
 
     ```
     [default]
@@ -50,17 +56,18 @@ In this tutorial, we will automate the deployment of a Minecraft server on AWS u
 
 5. Save the file.
 
-6. Make sure the file is named properly. If using notepad, it will save as a .txt by default. We can fix that with
+6. Make sure the file is named properly. If using notepad, it will save as a .txt by default. We can fix that with:
 
     ```bash
     mv credentials.txt credentials
     ```
-### 2. Edit the ~.awsconfig to ensure the region is set to us-east-1
+### 2. Edit the ~/.aws/config to ensure the region is set to us-east-1
 
 1. Open the config file in editor of your choice    
     ```bash 
     notepad.exe config
-
+    ```
+    
 8. Add this info
     ```
     [profile default]
@@ -70,36 +77,36 @@ In this tutorial, we will automate the deployment of a Minecraft server on AWS u
 10. Ensure its named correctl.y
     ```bash
     mv config.txt config
-
+    ```
 ### 3. Create an AWS SSH Key Pair
 
-1. Get back to the 'minecraft_autoserver' directory. Example
+1. Get back to the 'minecraft_autoserver' directory. Example:
 
     ```bash
     cd ~/minecraft_autoserver
     ```
 
-2. Generate a new key pair in that directory
+2. Generate a new key pair in that directory:
 
     ```bash
     ssh-keygen -t rsa -b 2048 -f minecraft-key
     ```
 
-3. Import that key pair into your AWS account
+3. Import that key pair into your AWS account:
 
     ```bash
-    aws ec2 import-key-pair --key-name minecraft-key --public-key-material fileb.minecraft-key.pub
+    aws ec2 import-key-pair --key-name "minecraft-key" --public-key-material fileb://./minecraft-key.pub
     ```
 
 ### 4. Running the Script and Starting the Server
 
-1. From the home 'minecraft_autoserver' directory, change to the 'terraform' directory
+1. From the home 'minecraft_autoserver' directory, change to the 'terraform' directory:
 
     ```bash
     cd terraform
     ```
 
-2. Run the Terraform script
+2. Run the Terraform script:
 
     ```bash
     terraform init
@@ -115,19 +122,19 @@ In this tutorial, we will automate the deployment of a Minecraft server on AWS u
 
 1. After the long installation of Terraform is complete, you should see an IP output in the terminal. (If you don't, you can see it again with `terraform output`)
 
-2. Using that IP, run the following command
+2. Using that IP, run the following command:
 
     ```bash
-    nmap -sV -Pn -p T25565 instance_public_ip
+    nmap -sV -Pn -p T:25565 <instance_public_ip>
     ```
 
-3. You should see some output like
+3. You should see some output like:
 
     ```text
-    Nmap scan report for ec2-18-233-65-83.compute-1.amazonaws.com (18.233.65.83)
+    "Nmap scan report for ec2-18-233-65-83.compute-1.amazonaws.com (18.233.65.83)"
     ```
 
-4. Take that `...amazonaws.com` address and connect via the Minecraft direct connect option. Based on the above output we could connect via
+4. Take that `...amazonaws.com` address and connect via the Minecraft direct connect option. Based on the above output we could connect via:
 
     ```bash
     ec2-18-233-65-83.compute-1.amazonaws.com
